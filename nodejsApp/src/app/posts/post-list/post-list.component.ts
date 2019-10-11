@@ -1,13 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 import { Post } from '../post.model';
-import { Subscription } from "rxjs";
-import { PostsService } from "src/app/posts.service";
+import { Subscription } from 'rxjs';
+import { PostsService } from 'src/app/posts.service';
 
 @Component({
-  selector: "app-post-list",
-  templateUrl: "./post-list.component.html",
-  styleUrls: ["./post-list.component.css"]
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent {
   // posts = [
@@ -21,14 +21,17 @@ export class PostListComponent {
   constructor(public postsService: PostsService) {}
 
   // tslint:disable-next-line: use-life-cycle-interface
-  ngOnInit(){
+  ngOnInit() {
     this.postsService.getPosts();
-    this.postsSub = this.postsService.getPostUpdateListener().subscribe((posts: Post[])=>{
-      this.posts= posts;
+    this.postsSub = this.postsService.getPostUpdateListener().subscribe((posts: Post[]) => {
+      this.posts = posts;
     });
   }
+  onDelete(postId: string) {
+    this.postsService.deletePost(postId);
+  }
 
-  ngDestroy(){
+  ngDestroy() {
     this.postsSub.unsubscribe();
   }
 }
