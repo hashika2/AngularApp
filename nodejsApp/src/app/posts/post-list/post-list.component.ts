@@ -1,37 +1,38 @@
-import { Component, Input } from '@angular/core';
-
-import { Post } from '../post.model';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from 'rxjs';
-import { PostsService } from 'src/app/posts.service';
+
+import { Post } from "../post.model";
+import { PostsService } from "../posts.service";
 
 @Component({
-  selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  selector: "app-post-list",
+  templateUrl: "./post-list.component.html",
+  styleUrls: ["./post-list.component.css"]
 })
-export class PostListComponent {
+export class PostListComponent implements OnInit, OnDestroy {
   // posts = [
   //   { title: "First Post", content: "This is the first post's content" },
   //   { title: "Second Post", content: "This is the second post's content" },
   //   { title: "Third Post", content: "This is the third post's content" }
   // ];
-  @Input() posts: Post[] = [];
+  posts: Post[] = [];
   private postsSub: Subscription;
 
   constructor(public postsService: PostsService) {}
 
-  // tslint:disable-next-line: use-life-cycle-interface
   ngOnInit() {
     this.postsService.getPosts();
-    this.postsSub = this.postsService.getPostUpdateListener().subscribe((posts: Post[]) => {
-      this.posts = posts;
-    });
+    this.postsSub = this.postsService.getPostUpdateListener()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
   }
+
   onDelete(postId: string) {
     this.postsService.deletePost(postId);
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.postsSub.unsubscribe();
   }
 }
