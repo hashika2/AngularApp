@@ -5,9 +5,9 @@ const app = express();
 const port =5000;
 
 app.use(
-    express.json(
+    express.json({
         extended : true
-    )
+    })
 )
 
 app.listen(port,()=>{
