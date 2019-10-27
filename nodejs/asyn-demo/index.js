@@ -1,24 +1,45 @@
 console.log("before");
-getTime(1,function(use){
-    console.log("user .....",use);
-    getRepository(use.gitHubUsername,(user)=>{
-        console.log('user',user);
-    
-    })
-})
 
 console.log("after");
+const p =getUser(1);
+p.then(use =>console.log(use));
 
-function getTime(id,callback){
-    setTimeout(()=>{
-        console.log('printinf...');
-        callback({id:id,gitHubUsername:'mosh'});
-    },2000);
-    
+function getUser(id){ 
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log('printinf...');
+            resolve({id:id,gitHubUsername:'mosh'});
+        },2000);
+    })
+        // console.log('user',user);
+        // commmit(async,getCommit)
+
 }
-function getRepository(name,callback){
-    setTimeout(()=>{
-        callback( ['return1','return 2','return 3']);
-    },2000)
+// function getRepository(use){
+//     getRepository(use.gitHubUsername,name)
+// }
+
+// function getTime(id,callback){
+
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             console.log('printinf...');
+//             resolve({id:id,gitHubUsername:'mosh'});
+//         },2000);
+//     })
     
-}
+    
+// }
+// function getRepository(name){
+//     return Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve( ['return1','return 2','return 3']);
+//         },2000)
+//     })
+   
+    
+// }
+
+// function  getCommit(){
+
+// }
