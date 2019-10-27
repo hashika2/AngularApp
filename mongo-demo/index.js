@@ -36,7 +36,7 @@ async function getCourse(){
   .find({author :/^hashika/})
 
   //end 77with maduranga
-  .find(author :/maduranga$/)
+  .find({author :/maduranga$/})
 
   //contains Mosh
   .find({author:/.*hashika*./i})
