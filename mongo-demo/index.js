@@ -11,10 +11,8 @@ const courseShema =new mongoose.Schema({
     date : {type:String,default:Date.now()},
     isPublish:Boolean
 });
-
+const Course = mongoose.model('Course',courseShema);
 async function createCourse(){
-
-    const Course = mongoose.model('Course',courseShema);
 
     const course =new Course({
         name:"angular js project",
@@ -35,7 +33,7 @@ async function getCourse(){
   //start with hashika
   .find({author :/^hashika/})
 
-  //end 77with maduranga
+  //end with maduranga
   .find({author :/maduranga$/})
 
   //contains Mosh
