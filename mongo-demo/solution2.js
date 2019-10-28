@@ -4,12 +4,12 @@ mongoose.connect('mongodb://localhost/mongo-exercises').then(()=>console.log("da
 
 const shema = new mongoose.Schema({
     
-    tags:[String],
-    name:String,
-    author:String,
-    date:Date,
-    price:Number,
-    isPublish:Boolean
+    name: String,
+  author: String, 
+  tags: [ String ],
+  date: Date, 
+  isPublished: Boolean,
+  price: Number
 
 }
 
