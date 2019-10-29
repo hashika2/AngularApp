@@ -32,14 +32,24 @@ async function run() {
 7//run();
 
 async function updateCourse(id){
+const course =await Course.findByIdAndUpdate({_id:id},{
+  $set={
+    isPublished=true,
+    author="author"
+  }
+},{new:true});
 
-  const course = await Course.findById(id);
-  if(!course) return;
 
-  course.isPublish=true;
-  course.author ="author author";
 
-  const result = await course.save();
-  console.log(result);
+const resut=course.save();
+console.log(resut);
+
 }
 updateCourse('5a68fe2142ae6a6482c4c9cb');
+
+async function removeCourse(id){
+  //const resut = Course.remove({_id:id})
+  const course =await Course.findByIdAndRemove({id})
+}
+
+removeCourse('5a68fe2142ae6a6482c4c9cb');
