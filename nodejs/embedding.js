@@ -59,7 +59,7 @@ async function removeUser(courseId,authors){
 
 removeUser('5dc8499cf89b783840bc19da','5dc8509841b0e63fa06094e0');
 
-addUser('5dc8499cf89b783840bc19da',new Author({name:'hashika'}));
+//addUser('5dc8499cf89b783840bc19da',new Author({name:'hashika'}));
 
 //createCourse('Node Course', new Author({ name: 'Mosh' }));
 
